@@ -1,0 +1,62 @@
+body {
+  background: #fafafa;
+}
+
+
+.game h1 {
+  font-family: 'VT323';
+  font-size: 48px;
+  text-align: center;
+}
+
+.game #record{
+  font-family: 'VT323';
+  font-size: 24px;
+  text-align: center;
+}
+
+.dino {
+  position: absolute;
+  bottom: 0;
+  left: 30px;
+  background-image: url(images/dino.png);
+  width: 60px;
+  height: 60px;
+}
+
+.cactus {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  bottom: 0;
+  background-image: url(images/cactus.png);
+}
+
+.game-over {
+  text-align: center;
+  color: #666;
+  margin: 50px 0;
+  font-family: 'VT323', arial;
+  font-size: 30px;
+}
+
+@keyframes slideright {
+  from {
+    background-position: 70000%;
+  }
+  to {
+    background-position: 0%;
+  }
+}
+
+.background {
+  position: absolute;
+  /* bottom: 0px; */
+  background-image: url("images/background.png");
+  background-repeat: repeat-x;
+  animation: slideright 600s infinite linear;
+  -webkit-animation: slideright 600s infinite linear;
+  width: 97%;
+  height: 200px;
+  margin: 300px auto;
+}
