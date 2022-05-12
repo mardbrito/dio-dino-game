@@ -1,17 +1,17 @@
-const dino = document.querySelector('.dino');
-const background = document.querySelector('.background');
+const dino = document.querySelector(".dino");
+const background = document.querySelector(".background");
+const score = document.querySelector(".score");
 
 let isJumping = false;
 let isGameOver = false;
 let position = 0;
 
 let count = 0;
-const record = document.getElementById("record");
 
-window.setInterval(function(){
-  record.innerHTML = count;
+window.setInterval(function () {
+  score.innerHTML = count;
   count++;
-},100);
+}, 100);
 
 function handleKeyUp(event) {
   if (event.keyCode === 32 || event.keyCode === 38) {
@@ -35,27 +35,27 @@ function jump() {
           isJumping = false;
         } else {
           position -= 20;
-          dino.style.bottom = position + 'px';
+          dino.style.bottom = position + "px";
         }
       }, 20);
     } else {
       // Subindo
       position += 20;
-      dino.style.bottom = position + 'px';
+      dino.style.bottom = position + "px";
     }
   }, 20);
 }
 
 function createCactus() {
-  const cactus = document.createElement('div');
+  const cactus = document.createElement("div");
   let cactusPosition = 1000;
   let randomTime = Math.random() * 6000;
 
   if (isGameOver) return;
 
-  cactus.classList.add('cactus');
+  cactus.classList.add("cactus");
   background.appendChild(cactus);
-  cactus.style.left = cactusPosition + 'px';
+  cactus.style.left = cactusPosition + "px";
 
   let leftTimer = setInterval(() => {
     if (cactusPosition < -60) {
@@ -66,10 +66,13 @@ function createCactus() {
       // Game over
       clearInterval(leftTimer);
       isGameOver = true;
-      document.body.innerHTML = '<h1 class="game-over">Fim de jogo</h1>';
+      document.body.innerHTML = `
+        <h1 class="game-over">GAME OVER</h1>
+        <h2 class="restart" onClick="document.location.reload(true)">[ Restart ]</h2>
+      `;
     } else {
       cactusPosition -= 10;
-      cactus.style.left = cactusPosition + 'px';
+      cactus.style.left = cactusPosition + "px";
     }
   }, 20);
 
@@ -77,4 +80,4 @@ function createCactus() {
 }
 
 createCactus();
-document.addEventListener('keyup', handleKeyUp);
+document.addEventListener("keyup", handleKeyUp);
